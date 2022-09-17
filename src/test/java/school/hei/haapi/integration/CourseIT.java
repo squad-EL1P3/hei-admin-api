@@ -145,10 +145,10 @@ public class CourseIT {
 
     TeachingApi api = new TeachingApi(manager1Client);
     Course created = api.createOrUpdateCourses(toCreate1);
+    toCreate1.setId(created.getId());
 
+    assertEquals(toCreate1, created);
     assertTrue(isValidUUID(created.getId()));
-    List<Course> actual = api.getCourses();
-    assertTrue(actual.contains(toCreate1));
   }
 
   static class ContextInitializer extends AbstractContextInitializer {
